@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rijksmuseum App</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/lightbox.css">
     <script src="https://kit.fontawesome.com/341f5cf1c8.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,7 +42,9 @@
                     Opis dzieła -->
                     <div class="art-item">
                         <div class="art-img">
-                            <img class='image' src="img/Rijksmuseum.jpg" alt="work of art">
+                            <a href="/img/Rijksmuseum.jpg" class='image' data-lightbox="image-1"
+                                data-title="My caption"><img src="img/Rijksmuseum.jpg" class='image' alt=""></a>
+
                         </div>
                         <div class="art-content">
                             <div class="info-wrapper">
@@ -51,10 +54,12 @@
                                 <div class="art-date">1999</div>
                             </div>
                             <div class="desc-wrapper">
-                                <div class="art-description">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                <div class="art-description">Lorem ipsum dolor sit amet consectetur adipisicing
+                                    elit.
                                     Quia
                                     aliquid
-                                    cumque, voluptatum illum inventore provident autem. Nisi eveniet recusandae nihil.
+                                    cumque, voluptatum illum inventore provident autem. Nisi eveniet recusandae
+                                    nihil.
                                 </div>
                                 <button class="read-more btn">Read More</button>
                             </div>
@@ -75,13 +80,14 @@
                 </div>
             </div> -->
 
+            </div>
         </div>
-    </div>
     
 
 
-    <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
-    <script src="js/app.js"></script>
+        <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+        <script src="js/lightbox-plus-jquery.js"></script>
+        <script src="js/app.js"></script>
 </body>
 
 </html>
