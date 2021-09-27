@@ -12,28 +12,6 @@ const key = "Q6Eq4lDv"
 const artist = "&involvedMaker="
 
 
-//read more!
-let noOfCharac = 150;
-let contents = document.querySelectorAll(".art-description")
-
-contents.forEach(content => {
-    if (content.textContent.length < noOfCharac) {
-        content.nextElementSibling.style.display = "none"
-    } else {
-        let displayText = content.textContent.slice(0, noOfCharac);
-        let moreText = content.textContent.slice(noOfCharac)
-        content.innerHTML = `${displayText}<span class="dots">...</span><span class="hide more">${moreText}</span>`
-    }
-})
-
-function readMore(btn) {
-    let post = btn.parentElement;
-    post.querySelector(".dots").classList.toggle("hide");
-    post.querySelector(".more").classList.toggle("hide");
-    btn.textContent == "Czytaj więcej" ? btn.textContent = "Czytaj mniej" : btn.textContent = "Czytaj więcej";
-}
-
-// 
 
 
 
@@ -60,8 +38,8 @@ function getArtist() {
                     console.log(art)
 
                     let webImg = (art.webImage) ? art.webImage.url : "https://kittytoken.io/assets/img/hero/hero-img.svg"
-                    let description =
-                        html += `
+
+                    html += `
                     
                 
                         <div class="art-item" data-id="${art.id}>
@@ -76,8 +54,8 @@ function getArtist() {
                                             </div>
                                             <div class="art-date">2137</div>
                                             </div>
-                                    <div class="desc-wrapper">
-                                <div class="art-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur ut facere, aspernatur reprehenderit quam consequatur alias debitis! Accusamus ipsam facere beatae id eius veritatis, possimus officia adipisci optio porro nisi eos, quod natus quos et consectetur itaque quasi rem odio consequuntur architecto commodi! Incidunt exercitationem id asperiores excepturi, necessitatibus omnis, odio nisi adipisci rem quia soluta? Eaque adipisci numquam cupiditate dolorum corporis et labore, velit nostrum excepturi error! Quaerat odit similique nisi mollitia cumque doloremque dolorum exercitationem nostrum, sequi debitis eaque officia ullam porro aut ab, excepturi voluptatum sapiente laboriosam perferendis inventore molestiae itaque quasi. Saepe quae consequuntur tenetur eligendi assumenda eaque pariatur culpa non vero voluptate soluta, ipsa officiis ratione similique nesciunt velit atque temporibus? Quo nostrum inventore accusamus exercitationem at a velit! Quam qui debitis et! Expedita ea perspiciatis, accusantium reprehenderit omnis velit ut soluta deserunt ex iure eaque asperiores animi praesentium cumque accusamus cupiditate hic nihil sapiente assumenda culpa! Rem, soluta. Nostrum quidem soluta, corrupti itaque nesciunt sit porro, voluptatem inventore architecto dolorum mollitia repellendus dignissimos perferendis, officia nulla! Ipsum perspiciatis sed reiciendis nihil fuga laboriosam veritatis. Obcaecati provident architecto quod neque. Sunt veniam aut harum, laboriosam eveniet, quo corrupti, numquam ad voluptatum vero cupiditate fuga dolores?
+                            <div class="desc-wrapper">
+                                <div class="art-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur ut facere, aspernatur reprehenderit quam consequatur alias debitis! Accusamus ipsam facere beatae id eius veritatis, possimus officia adipisci optio porro nisi eos, quod natus quos et consectetur itaque quasi rem odio consequuntur architecto commodi! Incidunt exercitationem id asperiores excepturi, necess
                                 </div>
                                 <button onclick ="readMore(this)" class="read-more btn">Czytaj więcej</button>
                             </div>
@@ -95,10 +73,38 @@ function getArtist() {
                 artistList.classList.add('not-found')
             }
             artistList.innerHTML = html;
+
+
+
+            // readmore 
+
+
+
+            let noOfCharac = 150;
+            let contents = document.querySelectorAll(".art-description")
+
+            contents.forEach(content => {
+                if (content.textContent.length < noOfCharac) {
+                    content.nextElementSibling.style.display = "none"
+                } else {
+                    let displayText = content.textContent.slice(0, noOfCharac);
+                    let moreText = content.textContent.slice(noOfCharac)
+                    content.innerHTML = `${displayText}<span class="dots"> ... </span><span class="hide more">${moreText}</span>`;
+                }
+            })
+
         });
+
+
+} function readMore(btn) {
+    let post = btn.parentElement;
+    post.querySelector(".dots").classList.toggle("hide");
+    post.querySelector(".more").classList.toggle("hide");
+    btn.textContent == "Czytaj więcej" ? btn.textContent = "Czytaj mniej" : btn.textContent = "Czytaj więcej";
 }
 
 searchBtn.addEventListener('click', getArtist);
+
 
 
 
