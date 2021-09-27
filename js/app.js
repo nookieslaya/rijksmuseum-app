@@ -12,10 +12,31 @@ const key = "Q6Eq4lDv"
 const artist = "&involvedMaker="
 
 
+//read more!
+let noOfCharac = 150;
+let contents = document.querySelectorAll(".art-description")
 
-const getDescription  = () =>{
-    let objectNumber
+contents.forEach(content => {
+    if (content.textContent.length < noOfCharac) {
+        content.nextElementSibling.style.display = "none"
+    } else {
+        let displayText = content.textContent.slice(0, noOfCharac);
+        let moreText = content.textContent.slice(noOfCharac)
+        content.innerHTML = `${displayText}<span class="dots">...</span><span class="hide more">${moreText}</span>`
+    }
+})
+
+function readMore(btn) {
+    let post = btn.parentElement;
+    post.querySelector(".dots").classList.toggle("hide");
+    post.querySelector(".more").classList.toggle("hide");
+    btn.textContent == "Czytaj więcej" ? btn.textContent = "Czytaj mniej" : btn.textContent = "Czytaj więcej";
 }
+
+// 
+
+
+
 
 
 
@@ -30,16 +51,17 @@ function getArtist() {
 
         .then(resp => resp.json())
         .then(data => {
-            
+
             let html = "";
-            console.log(data)
+            // console.log(data)
             if (data.artObjects) {
 
                 data.artObjects.forEach(art => {
                     console.log(art)
 
                     let webImg = (art.webImage) ? art.webImage.url : "https://kittytoken.io/assets/img/hero/hero-img.svg"
-                    html += `
+                    let description =
+                        html += `
                     
                 
                         <div class="art-item" data-id="${art.id}>
@@ -55,13 +77,10 @@ function getArtist() {
                                             <div class="art-date">2137</div>
                                             </div>
                                     <div class="desc-wrapper">
-                                            <div class="art-description">
-                                            As inexperienced as he is, the young Rembrandt does not shy away from experimenting. Here the light rakes his right cheek while the rest of his face is enveloped in shadow. It takes a moment to realize that he is peering out at you. Rembrandt accentuated the curls of his tousled hair by drawing in the wet paint with the butt end of his paintbrush.
-                                            As inexperienced as he is, the young Rembrandt does not shy away from experimenting. Here the light rakes his right cheek while the rest of his face is enveloped in shadow. It takes a moment to realize that he is peering out at you. Rembrandt accentuated the curls of his tousled hair by drawing in the wet paint with the butt end of his paintbrush.
-                                            As inexperienced as he is, the young Rembrandt does not shy away from experimenting. Here the light rakes his right cheek while the rest of his face is enveloped in shadow. It takes a moment to realize that he is peering out at you. Rembrandt accentuated the curls of his tousled hair by drawing in the wet paint with the butt end of his paintbrush.
-                                            </div>
-                                            <button class="read-more btn">Read More</button>
-                                    </div>
+                                <div class="art-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur ut facere, aspernatur reprehenderit quam consequatur alias debitis! Accusamus ipsam facere beatae id eius veritatis, possimus officia adipisci optio porro nisi eos, quod natus quos et consectetur itaque quasi rem odio consequuntur architecto commodi! Incidunt exercitationem id asperiores excepturi, necessitatibus omnis, odio nisi adipisci rem quia soluta? Eaque adipisci numquam cupiditate dolorum corporis et labore, velit nostrum excepturi error! Quaerat odit similique nisi mollitia cumque doloremque dolorum exercitationem nostrum, sequi debitis eaque officia ullam porro aut ab, excepturi voluptatum sapiente laboriosam perferendis inventore molestiae itaque quasi. Saepe quae consequuntur tenetur eligendi assumenda eaque pariatur culpa non vero voluptate soluta, ipsa officiis ratione similique nesciunt velit atque temporibus? Quo nostrum inventore accusamus exercitationem at a velit! Quam qui debitis et! Expedita ea perspiciatis, accusantium reprehenderit omnis velit ut soluta deserunt ex iure eaque asperiores animi praesentium cumque accusamus cupiditate hic nihil sapiente assumenda culpa! Rem, soluta. Nostrum quidem soluta, corrupti itaque nesciunt sit porro, voluptatem inventore architecto dolorum mollitia repellendus dignissimos perferendis, officia nulla! Ipsum perspiciatis sed reiciendis nihil fuga laboriosam veritatis. Obcaecati provident architecto quod neque. Sunt veniam aut harum, laboriosam eveniet, quo corrupti, numquam ad voluptatum vero cupiditate fuga dolores?
+                                </div>
+                                <button onclick ="readMore(this)" class="read-more btn">Czytaj więcej</button>
+                            </div>
                        </div>
                         
                     </div>
