@@ -1,6 +1,7 @@
 const searchBtn = document.getElementById('search-btn')
 const artistList = document.getElementById('work-of-art')
 
+const artDesc = document.querySelectorAll('.art-descriprion')
 const artImage = document.querySelector('.art-img')
 const artItem = document.querySelector('.art-item')
 const imgModal = document.querySelector('.img-modal')
@@ -22,22 +23,40 @@ const artist = "&involvedMaker="
 function getArtist() {
 
 
+
+
+
     let searchInputTxt = document.getElementById('search-input').value.split(/\s+/).join('+');
     console.log(searchInputTxt)
 
-    fetch(`https://www.rijksmuseum.nl/api/nl/collection/?key=Q6Eq4lDv&q=${searchInputTxt}&involvedMaker`)
+    fetch(`https://www.rijksmuseum.nl/api/en/collection/?key=Q6Eq4lDv&q=${searchInputTxt}&involvedMaker`)
 
         .then(resp => resp.json())
         .then(data => {
 
+
             let html = "";
-            // console.log(data)
+
             if (data.artObjects) {
 
                 data.artObjects.forEach(art => {
-                    console.log(art)
+
+                   
+
+                    let objectUrl = `https://www.rijksmuseum.nl/api/nl/collection/${art.objectNumber}?key=Q6Eq4lDv`;
+
+                    fetch(objectUrl)
+                        .then(resp => resp.json())
+                        .then(data => {
+                            console.log(data.artObject.description) // nie wiem jak dodać ten opis do .art-description
+                        })
+                            
+
+
+
 
                     let webImg = (art.webImage) ? art.webImage.url : "https://kittytoken.io/assets/img/hero/hero-img.svg"
+
 
                     html += `
                     
@@ -55,7 +74,7 @@ function getArtist() {
                                             <div class="art-date">2137</div>
                                             </div>
                             <div class="desc-wrapper">
-                                <div class="art-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur ut facere, aspernatur reprehenderit quam consequatur alias debitis! Accusamus ipsam facere beatae id eius veritatis, possimus officia adipisci optio porro nisi eos, quod natus quos et consectetur itaque quasi rem odio consequuntur architecto commodi! Incidunt exercitationem id asperiores excepturi, necess
+                                <div class="art-description">(TU POWIENIEN POJAWIC SIE OPIS Z API)(TU POWIENIEN POJAWIC SIE OPIS Z API)(TU POWIENIEN POJAWIC SIE OPIS Z API)(TU POWIENIEN POJAWIC SIE OPIS Z API)(TU POWIENIEN POJAWIC SIE OPIS Z API)(TU POWIENIEN POJAWIC SIE OPIS Z API)(TU POWIENIEN POJAWIC SIE OPIS Z API)(TU POWIENIEN POJAWIC SIE OPIS Z API)(TU POWIENIEN POJAWIC SIE OPIS Z API)
                                 </div>
                                 <button onclick ="readMore(this)" class="read-more btn">Czytaj więcej</button>
                             </div>
@@ -65,13 +84,15 @@ function getArtist() {
 
                    
 
-                `;
+                    `;
+
                 });
                 artistList.classList.remove('not-found')
             } else {
                 html = "strona nie działa"
                 artistList.classList.add('not-found')
             }
+
             artistList.innerHTML = html;
 
 
