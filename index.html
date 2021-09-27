@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rijksmuseum App</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/341f5cf1c8.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="artist-wrapper">
+            <div class="artist-search">
+                <h2 class="title">ZNAJDŹ DZIEŁO SWOJEGO ulubionego artysty w<br> <span
+                        class="title-span">Rijksmuseum</span></h2>
+            </div>
+
+            <div class="artis-search-box">
+                <input type="text" class="search-content" placeholder="Enter an Artist" id='search-input'>
+                <button type='submit' class="search-btn btn" id="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+
+            <div class="artist-result">
+                <!-- <h2 class="title title-two">Your Search Resoults:</h2> -->
+                <div id="work-of-art" class="work-of-art">
+                    <!-- art item -->
+                    <!-- Miniaturę obrazu
+                    Autora
+                    Datę powstania
+                    Opis dzieła -->
+                    <div class="art-item">
+                        <div class="art-img">
+                            <img class='image' src="img/Rijksmuseum.jpg" alt="work of art">
+                        </div>
+                        <div class="art-content">
+                            <div class="info-wrapper">
+                                <div class="art-author">
+                                    <h3>Johny</h3>
+                                </div>
+                                <div class="art-date">1999</div>
+                            </div>
+                            <div class="desc-wrapper">
+                                <div class="art-description">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                    Quia
+                                    aliquid
+                                    cumque, voluptatum illum inventore provident autem. Nisi eveniet recusandae nihil.
+                                </div>
+                                <button class="read-more btn">Read More</button>
+                            </div>
+                        </div>
+                    </div>
+                    end item
+                </div>
+
+                <!-- <div class="img-modal">
+                    <div class="img-details">
+                        <div class="big-image">
+                            <img src="/img/Rijksmuseum.jpg" alt="Picture from Rijksmuseum">
+                            <div type="button" class="img-close-btn btn" id="img-close-btn">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+        </div>
+    </div>
+    
+
+
+    <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+    <script src="js/app.js"></script>
+</body>
+
+</html>

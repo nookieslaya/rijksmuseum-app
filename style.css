@@ -1,0 +1,246 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: url("/img/tło.png");
+  background-repeat: repeat;
+  background-size: contain;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.btn {
+  cursor: pointer;
+  font-size: 1.4rem;
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 3rem;
+  color: #E77728;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.title-span {
+  font-size: 4rem;
+  margin-bottom: 3rem;
+  color: #E77728;
+  text-transform: uppercase;
+  margin-top: 2rem;
+  letter-spacing: 10px;
+  font-weight: 700;
+}
+
+.container {
+  min-height: 100vh;
+}
+
+.artist-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.artist-search {
+  margin: 2rem 0;
+}
+
+.artis-search-box {
+  max-width: 600px;
+  width: 80%;
+  margin: 1.5rem 0;
+  display: flex;
+  margin: 0 auto;
+  align-items: stretch;
+}
+
+.search-content,
+.search-btn {
+  width: 100%;
+}
+
+.search-content {
+  padding: 1rem 2rem;
+  font-size: 1.4rem;
+  outline: 0;
+  border: 1px solid #EEEEFF;
+  border-top-left-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+}
+
+.search-content::placeholder {
+  color: black;
+}
+
+.search-btn {
+  width: 6rem;
+  height: 4rem;
+  font-size: 1.5rem;
+  background-color: #EEEEFF;
+  color: #ecbd9b;
+  border: none;
+  border-bottom-right-radius: 2rem;
+  border-top-right-radius: 2rem;
+  transition-property: background-color, color;
+  transition-duration: .3s;
+}
+
+.search-btn:hover {
+  background-color: #E77728;
+  color: #EEEEFF;
+}
+
+.artist-result {
+  margin-top: 5rem;
+}
+
+.work-of-art {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.art-item {
+  display: flex;
+  position: sticky;
+  flex-direction: column;
+  padding: 1rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 12px -3px rgba(241, 241, 241, 0.79);
+  max-width: 360px;
+  background-color: #141D2E;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-bottom: 6rem;
+}
+
+.art-img {
+  padding: 1rem;
+}
+
+.art-img img {
+  display: block;
+}
+
+.image {
+  border-radius: 10px;
+  width: 100%;
+  max-height: 400px;
+}
+
+.art-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.info-wrapper {
+  display: flex;
+}
+
+.desc-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.art-author {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  font-size: 1.8rem;
+  width: 100%;
+  color: #E77728;
+  align-items: center;
+  padding: 1rem;
+}
+
+.art-date {
+  padding: 2rem;
+  font-size: 2.2rem;
+  color: #778DA9;
+  width: 80%;
+  font-weight: bold;
+}
+
+.art-description {
+  height: 100%;
+  font-size: 1.3rem;
+  line-height: 1.3;
+  color: white;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.read-more {
+  color: #EEEEFF;
+  background-color: #778DA9;
+  padding: 0.2rem;
+  border: 1px solid #EEEEFF;
+  transition: all .2s ease-in;
+  border-radius: 5px;
+  margin-top: .3rem;
+}
+
+.read-more:hover {
+  background-color: #E77728;
+  color: black;
+  border: 1px solid #EEEEFF;
+}
+
+.img-modal {
+  max-width: 1280px;
+  width: 100%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ecbd9b;
+  display: none;
+}
+
+.img-modal img {
+  width: 80%;
+}
+
+.img-close-btn {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  color: #ecbd9b;
+  background-color: white;
+  right: 15%;
+  top: 5%;
+  font-size: 2rem;
+  padding: 1rem;
+  border-radius: 50%;
+}
+
+.not-found {
+  color: white;
+  align-items: center;
+  font-size: 3rem;
+  font-weight: 700;
+  width: 100%;
+}
+
+.show-modal {
+  display: block;
+}
