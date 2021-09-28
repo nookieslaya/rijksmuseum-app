@@ -1,62 +1,49 @@
-const searchBtn = document.getElementById('search-btn')
-const artistList = document.getElementById('work-of-art')
+const searchBtn = document.getElementById("search-btn");
+const artistList = document.getElementById("work-of-art");
 
-const artDesc = document.querySelectorAll('.art-descriprion')
-const artImage = document.querySelector('.art-img')
-const artItem = document.querySelector('.art-item')
-const imgModal = document.querySelector('.img-modal')
-const closeModa = document.getElementById('img-close-btn')
+const input = document.getElementById("search-input")
 
-const api = "https://www.rijksmuseum.nl/api/en/collection/SK-C-5?key="
+const artDesc = document.querySelectorAll(".art-descriprion");
+const artImage = document.querySelector(".art-img");
+const artItem = document.querySelector(".art-item");
+const imgModal = document.querySelector(".img-modal");
+const closeModa = document.getElementById("img-close-btn");
 
-const key = "Q6Eq4lDv"
-const artist = "&involvedMaker="
+const api = "https://www.rijksmuseum.nl/api/en/collection/SK-C-5?key=";
 
-
-
-
-
-
-
-
+const key = "Q6Eq4lDv";
+const artist = "&involvedMaker=";
 
 function getArtist() {
+    let searchInputTxt = document
+        .getElementById("search-input")
+        .value.split(/\s+/)
+        .join("+");
+    console.log(searchInputTxt);
 
-
-
-
-
-    let searchInputTxt = document.getElementById('search-input').value.split(/\s+/).join('+');
-    console.log(searchInputTxt)
-
-    fetch(`https://www.rijksmuseum.nl/api/en/collection/?key=Q6Eq4lDv&q=${searchInputTxt}&involvedMaker`)
-
-        .then(resp => resp.json())
-        .then(data => {
-
-
+    fetch(
+        `https://www.rijksmuseum.nl/api/en/collection/?key=Q6Eq4lDv&q=${searchInputTxt}&involvedMaker`
+    )
+        .then((resp) => resp.json())
+        .then((data) => {
             let html = "";
 
             if (data.artObjects) {
-
-                data.artObjects.forEach(art => {
-
-
-
+                data.artObjects.forEach((art) => {
                     let objectUrl = `https://www.rijksmuseum.nl/api/nl/collection/${art.objectNumber}?key=Q6Eq4lDv`;
 
                     fetch(objectUrl)
-                        .then(resp => resp.json())
-                        .then(data => {
-                            console.log(data.artObject.description)
-                        })
+                        .then((resp) => resp.json())
+                        .then((data) => {
+                            console.log(data.artObject.description)//; nie wim jak przypisać tą wartość do description
+                        });
+
+                    let webImg = art.webImage
 
 
 
-
-
-                    let webImg = (art.webImage) ? art.webImage.url : "https://kittytoken.io/assets/img/hero/hero-img.svg"
-
+                        ? art.webImage.url
+                        : "https://kittytoken.io/assets/img/hero/hero-img.svg";
 
                     html += `
                     
@@ -66,78 +53,71 @@ function getArtist() {
                                       <a href="${webImg}" class='image' data-lightbox="${art}"
                                 data-title="${art.title}"><img src="${webImg}" class='image' alt="${art.title}"></a>
                                 
-                                <div class="art-content">
+                                    <div class="art-content">
                                         <div class="info-wrapper">
                                             <div class="art-author">
                                                 <h3>${art.principalOrFirstMaker}</h3>
                                             </div>
                                             <div class="art-date">2137</div>
-                                            </div>
+                                        </div>
                             <div class="desc-wrapper">
-                                <div class="art-description">(TU POWIENIEN POJAWIC SIE OPIS Z API)(TU POWIENIEN POJAWIC SIE OPIS Z API)(TU POWIENIEN POJAWIC SIE OPIS Z API)(TU POWIENIEN POJAWIC SIE OPIS Z API)(TU POWIENIEN POJAWIC SIE OPIS Z API)(TU POWIENIEN POJAWIC SIE OPIS Z API)(TU POWIENIEN POJAWIC SIE OPIS Z API)(TU POWIENIEN POJAWIC SIE OPIS Z API)(TU POWIENIEN POJAWIC SIE OPIS Z API)
+                                    <div class="art-description">(TU POWIENIEN POJAWIC SIE OPIS Z API)(TU POWIENIEN POJAWIC SIE OPIS Z API)(TU POWIENIEN POJAWIC SIE OPIS Z API)(TU POWIENIEN POJAWIC SIE OPIS Z API)(TU POWIENIEN POJAWIC SIE OPIS Z API)(TU POWIENIEN POJAWIC SIE OPIS Z API)(TU POWIENIEN POJAWIC SIE OPIS Z API)(TU POWIENIEN POJAWIC SIE OPIS Z API)(TU POWIENIEN POJAWIC SIE OPIS Z API)
                                 </div>
                                 <button onclick ="readMore(this)" class="read-more btn">Czytaj więcej</button>
                             </div>
-                       </div>
-                        
+                           </div>
+                          
                     </div>
 
                    
 
                     `;
-
                 });
-                artistList.classList.remove('not-found')
+                artistList.classList.remove("not-found");
             } else {
-                html = "strona nie działa"
-                artistList.classList.add('not-found')
+                html = "strona nie działa";
+                artistList.classList.add("not-found");
             }
 
             artistList.innerHTML = html;
 
-
-
-            // readmore 
-
-
+            // readmore
 
             let noOfChar = 150;
-            let contents = document.querySelectorAll(".art-description")
+            let contents = document.querySelectorAll(".art-description");
 
-            contents.forEach(content => {
+            contents.forEach((content) => {
                 if (content.textContent.length < noOfChar) {
-                    content.nextElementSibling.style.display = "none"
+                    content.nextElementSibling.style.display = "none";
                 } else {
                     let displayText = content.textContent.slice(0, noOfChar);
-                    let moreText = content.textContent.slice(noOfChar)
+                    let moreText = content.textContent.slice(noOfChar);
                     content.innerHTML = `${displayText}<span class="dots"> ... </span><span class="hide more">${moreText}</span>`;
                 }
-            })
-
+            });
         });
-
-
-} function readMore(btn) {
+}
+function readMore(btn) {
     let post = btn.parentElement;
     post.querySelector(".dots").classList.toggle("hide");
     post.querySelector(".more").classList.toggle("hide");
-    btn.textContent == "Czytaj więcej" ? btn.textContent = "Czytaj mniej" : btn.textContent = "Czytaj więcej";
+    btn.textContent == "Czytaj więcej"
+        ? (btn.textContent = "Czytaj mniej")
+        : (btn.textContent = "Czytaj więcej");
 }
 
-searchBtn.addEventListener('click', getArtist);
 
 
+searchBtn.addEventListener("click", getArtist);
 
 
-
-
-
-
+const enterCheck = e => {
+    if (e.key == "Enter") {
+        getArtist()
+    }
+}
+input.addEventListener("keyup", enterCheck);
 // wyświetlanie modala (powiekszona)
-
-
-
-
 
 // function getModal(e) {
 //     e.preventDefault();
@@ -149,11 +129,9 @@ searchBtn.addEventListener('click', getArtist);
 //             .then(resp => resp.json())
 //             .then(data => { console.log(data) })
 
-
 //     }
 // }
 // artistList.addEventListener('click', getModal);
-
 
 // function artModal(art) {
 //     art = art
@@ -175,51 +153,7 @@ searchBtn.addEventListener('click', getArtist);
 
 // }
 
-
-// pagination 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// pagination
 
 // searchBtn.addEventListener('click', getArt);
 
@@ -262,20 +196,7 @@ searchBtn.addEventListener('click', getArtist);
 //             artistList.innerHTML = html;
 //         })
 
-
 // }
-
-
-
-
-
-
-
-
-
-
-
-
 
 // let html = ''
 // if (data.artObjects) {
@@ -308,9 +229,3 @@ searchBtn.addEventListener('click', getArtist);
 // artistList.innerHTML = html;
 
 // Rembrandt van Rĳn
-
-
-
-
-
-
