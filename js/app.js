@@ -1,6 +1,7 @@
 const searchBtn = document.getElementById('search-btn')
 const artistList = document.getElementById('work-of-art')
 
+const artDesc = document.querySelectorAll('.art-descriprion')
 const artImage = document.querySelector('.art-img')
 const artItem = document.querySelector('.art-item')
 const imgModal = document.querySelector('.img-modal')
@@ -13,9 +14,8 @@ const artist = "&involvedMaker="
 
 
 
-const getDescription  = () =>{
-    let objectNumber
-}
+
+
 
 
 
@@ -23,28 +23,48 @@ const getDescription  = () =>{
 function getArtist() {
 
 
+
+
+
     let searchInputTxt = document.getElementById('search-input').value.split(/\s+/).join('+');
     console.log(searchInputTxt)
 
-    fetch(`https://www.rijksmuseum.nl/api/nl/collection/?key=Q6Eq4lDv&q=${searchInputTxt}&involvedMaker`)
+    fetch(`https://www.rijksmuseum.nl/api/en/collection/?key=Q6Eq4lDv&q=${searchInputTxt}&involvedMaker`)
 
         .then(resp => resp.json())
         .then(data => {
-            
+
+
             let html = "";
-            console.log(data)
+
             if (data.artObjects) {
 
                 data.artObjects.forEach(art => {
-                    console.log(art)
+
+
+
+                    let objectUrl = `https://www.rijksmuseum.nl/api/nl/collection/${art.objectNumber}?key=Q6Eq4lDv`;
+
+                    fetch(objectUrl)
+                        .then(resp => resp.json())
+                        .then(data => {
+                            console.log(data.artObject.description)
+                        })
+
+
+
+
 
                     let webImg = (art.webImage) ? art.webImage.url : "https://kittytoken.io/assets/img/hero/hero-img.svg"
+
+
                     html += `
                     
                 
                         <div class="art-item" data-id="${art.id}>
                                 <div class="art-img">
-                                      <img class ="image"src="${webImg}" alt="${art.title}">
+                                      <a href="${webImg}" class='image' data-lightbox="${art}"
+                                data-title="${art.title}"><img src="${webImg}" class='image' alt="${art.title}"></a>
                                 
                                 <div class="art-content">
                                         <div class="info-wrapper">
@@ -53,32 +73,59 @@ function getArtist() {
                                             </div>
                                             <div class="art-date">2137</div>
                                             </div>
-                                    <div class="desc-wrapper">
-                                            <div class="art-description">
-                                            As inexperienced as he is, the young Rembrandt does not shy away from experimenting. Here the light rakes his right cheek while the rest of his face is enveloped in shadow. It takes a moment to realize that he is peering out at you. Rembrandt accentuated the curls of his tousled hair by drawing in the wet paint with the butt end of his paintbrush.
-                                            As inexperienced as he is, the young Rembrandt does not shy away from experimenting. Here the light rakes his right cheek while the rest of his face is enveloped in shadow. It takes a moment to realize that he is peering out at you. Rembrandt accentuated the curls of his tousled hair by drawing in the wet paint with the butt end of his paintbrush.
-                                            As inexperienced as he is, the young Rembrandt does not shy away from experimenting. Here the light rakes his right cheek while the rest of his face is enveloped in shadow. It takes a moment to realize that he is peering out at you. Rembrandt accentuated the curls of his tousled hair by drawing in the wet paint with the butt end of his paintbrush.
-                                            </div>
-                                            <button class="read-more btn">Read More</button>
-                                    </div>
+                            <div class="desc-wrapper">
+                                <div class="art-description">(TU POWIENIEN POJAWIC SIE OPIS Z API)(TU POWIENIEN POJAWIC SIE OPIS Z API)(TU POWIENIEN POJAWIC SIE OPIS Z API)(TU POWIENIEN POJAWIC SIE OPIS Z API)(TU POWIENIEN POJAWIC SIE OPIS Z API)(TU POWIENIEN POJAWIC SIE OPIS Z API)(TU POWIENIEN POJAWIC SIE OPIS Z API)(TU POWIENIEN POJAWIC SIE OPIS Z API)(TU POWIENIEN POJAWIC SIE OPIS Z API)
+                                </div>
+                                <button onclick ="readMore(this)" class="read-more btn">Czytaj więcej</button>
+                            </div>
                        </div>
                         
                     </div>
 
                    
 
-                `;
+                    `;
+
                 });
                 artistList.classList.remove('not-found')
             } else {
                 html = "strona nie działa"
                 artistList.classList.add('not-found')
             }
+
             artistList.innerHTML = html;
+
+
+
+            // readmore 
+
+
+
+            let noOfChar = 150;
+            let contents = document.querySelectorAll(".art-description")
+
+            contents.forEach(content => {
+                if (content.textContent.length < noOfChar) {
+                    content.nextElementSibling.style.display = "none"
+                } else {
+                    let displayText = content.textContent.slice(0, noOfChar);
+                    let moreText = content.textContent.slice(noOfChar)
+                    content.innerHTML = `${displayText}<span class="dots"> ... </span><span class="hide more">${moreText}</span>`;
+                }
+            })
+
         });
+
+
+} function readMore(btn) {
+    let post = btn.parentElement;
+    post.querySelector(".dots").classList.toggle("hide");
+    post.querySelector(".more").classList.toggle("hide");
+    btn.textContent == "Czytaj więcej" ? btn.textContent = "Czytaj mniej" : btn.textContent = "Czytaj więcej";
 }
 
 searchBtn.addEventListener('click', getArtist);
+
 
 
 
@@ -92,40 +139,46 @@ searchBtn.addEventListener('click', getArtist);
 
 
 
-function getModal(e) {
-    e.preventDefault();
-    if (e.target.classList.contains('image')) {
+// function getModal(e) {
+//     e.preventDefault();
+//     if (e.target.classList.contains('image')) {
 
-        let artItem = e.target.parentElement;
+//         let artItem = e.target.parentElement;
 
-        fetch(`https://www.rijksmuseum.nl/api/nl/collection/?key=Q6Eq4lDv&q=${artItem.dataset.id}`)
-            .then(resp => resp.json())
-            .then(data => { console.log(data) })
-
-
-    }
-}
-artistList.addEventListener('click', getModal);
+//         fetch(`https://www.rijksmuseum.nl/api/nl/collection/?key=Q6Eq4lDv&q=${artItem.dataset.id}`)
+//             .then(resp => resp.json())
+//             .then(data => { console.log(data) })
 
 
-function artModal(art) {
-    art = art
+//     }
+// }
+// artistList.addEventListener('click', getModal);
 
-    let html = `
-                    <div class="img-modal">
-                    <div class="img-details">
-                        <div class="big-image">
-                            <img src="${art.artObjects.id}" alt="Picture from Rijksmuseum">
-                            <div type="button" class="img-close-btn btn" id="img-close-btn">
-                                <i class="fas fa-times"></i>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                `;
-    imgModal.innerHTML = html;
-    imgModal.classList.add('show-modal')
-}
+
+// function artModal(art) {
+//     art = art
+
+//     let html = `
+//                     <div class="img-modal">
+//                     <div class="img-details">
+//                         <div class="big-image">
+//                             <img src="${art.artObjects.id}" alt="Picture from Rijksmuseum">
+//                             <div type="button" class="img-close-btn btn" id="img-close-btn">
+//                                 <i class="fas fa-times"></i>
+//                             </div>
+//                         </div>
+//                         </div>
+//                     </div>
+//                 `;
+//     imgModal.innerHTML = html;
+//     imgModal.classList.add('show-modal')
+
+// }
+
+
+// pagination 
+
+
 
 
 
