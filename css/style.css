@@ -11,8 +11,8 @@ html {
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
-  background: url("/img/tło.png");
+  font-family: "Montserrat", sans-serif;
+  background: url("../img/tło.png");
   background-repeat: repeat;
   background-size: contain;
   background-position: center;
@@ -25,17 +25,18 @@ body {
 }
 
 .title {
-  font-size: 3rem;
+  font-size: 2.5rem;
+  line-height: 1.5;
   margin-bottom: 3rem;
-  color: #E77728;
+  color: #e77728;
   text-transform: uppercase;
   font-weight: 400;
 }
 
 .title-span {
-  font-size: 4rem;
+  font-size: 3rem;
   margin-bottom: 3rem;
-  color: #E77728;
+  color: #e77728;
   text-transform: uppercase;
   margin-top: 2rem;
   letter-spacing: 10px;
@@ -43,7 +44,8 @@ body {
 }
 
 .container {
-  min-height: 100vh;
+  margin-top: 11vh;
+  min-height: 86.5vh;
 }
 
 .artist-wrapper {
@@ -77,9 +79,8 @@ body {
 
 .search-content {
   padding: 1rem 2rem;
-  font-size: 1.4rem;
   outline: 0;
-  border: 1px solid #EEEEFF;
+  border: 1px solid #eeeeff;
   border-top-left-radius: 2rem;
   border-bottom-left-radius: 2rem;
 }
@@ -104,20 +105,20 @@ body {
   width: 6rem;
   height: 4rem;
   font-size: 1.5rem;
-  background-color: #EEEEFF;
+  background-color: #eeeeff;
   color: #ecbd9b;
   border: none;
   border-bottom-right-radius: 2rem;
   border-top-right-radius: 2rem;
   -webkit-transition-property: background-color, color;
   transition-property: background-color, color;
-  -webkit-transition-duration: .3s;
-          transition-duration: .3s;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
 }
 
 .search-btn:hover {
-  background-color: #E77728;
-  color: #EEEEFF;
+  background-color: #e77728;
+  color: #eeeeff;
 }
 
 .artist-result {
@@ -156,7 +157,7 @@ body {
   -webkit-box-shadow: 0 4px 12px -3px rgba(241, 241, 241, 0.79);
           box-shadow: 0 4px 12px -3px rgba(241, 241, 241, 0.79);
   max-width: 360px;
-  background-color: #141D2E;
+  background-color: #141d2e;
   background-size: cover;
   background-repeat: no-repeat;
   margin-bottom: 6rem;
@@ -219,7 +220,7 @@ body {
   padding: 1rem;
   font-size: 1.8rem;
   width: 100%;
-  color: #E77728;
+  color: #e77728;
   align-items: center;
   padding: 1rem;
 }
@@ -227,7 +228,7 @@ body {
 .art-date {
   padding: 2rem;
   font-size: 2.2rem;
-  color: #778DA9;
+  color: #778da9;
   width: 80%;
   font-weight: bold;
 }
@@ -242,20 +243,20 @@ body {
 }
 
 .read-more {
-  color: #EEEEFF;
-  background-color: #778DA9;
+  color: #eeeeff;
+  background-color: #778da9;
   padding: 0.2rem;
-  border: 1px solid #EEEEFF;
-  -webkit-transition: all .2s ease-in;
-  transition: all .2s ease-in;
+  border: 1px solid #eeeeff;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
   border-radius: 5px;
-  margin-top: .3rem;
+  margin-top: 0.3rem;
 }
 
 .read-more:hover {
-  background-color: #E77728;
+  background-color: #e77728;
   color: black;
-  border: 1px solid #EEEEFF;
+  border: 1px solid #eeeeff;
 }
 
 .img-modal {
@@ -306,11 +307,51 @@ body {
   width: 100%;
 }
 
+.footer-text {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 3rem;
+  font-size: 1.3rem;
+  background-color: white;
+  padding: 1rem;
+  bottom: 0;
+}
+
+.footer-text span {
+  color: #16b5f0;
+  padding: 0;
+}
+
 .show-modal {
   display: block;
 }
 
 .hide {
   display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .title {
+    font-size: 3em;
+    max-width: 700px;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .title-span {
+    font-size: 4rem;
+  }
+  .footer-text {
+    font-size: 1.6rem;
+  }
 }
 /*# sourceMappingURL=style.css.map */

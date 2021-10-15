@@ -6,14 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rijksmuseum App</title>
+
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/lightbox.css">
+
     <script src="https://kit.fontawesome.com/341f5cf1c8.js" crossorigin="anonymous"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+
 
 </head>
 
@@ -23,44 +26,19 @@
     <div class="container">
         <div class="artist-wrapper">
             <div class="artist-search">
-                <h2 class="title">ZNAJDŹ DZIEŁO SWOJEGO ulubionego artysty w<br> <span
-                        class="title-span">Rijksmuseum</span></h2>
+                <h2 class="title">ZNAJDŹ DZIEŁO ulubionego artysty w<br> <span class="title-span">Rijksmuseum</span>
+                </h2>
             </div>
 
-            <div class="artis-search-box">
-                <input type="text" class="search-content" placeholder="Enter an Artist" id='search-input'>
+            <div class="artis-search-box output">
+                <input type="text" class="search-content" placeholder="Wpisz Artystę" id='search-input'>
                 <button type='submit' class="search-btn btn" id="search-btn"><i class="fas fa-search"></i></button>
             </div>
 
             <div class="artist-result">
                 <!-- <h2 class="title title-two">Your Search Resoults:</h2> -->
                 <div id="work-of-art" class="work-of-art">
-                    <!-- art item -->
-                    <!-- Miniaturę obrazu
-                    Autora
-                    Datę powstania
-                    Opis dzieła -->
-                    <div class="art-item">
-                        <div class="art-img">
-                            <a href="/img/Rijksmuseum.jpg" class='image' data-lightbox="image-1"
-                                data-title="My caption"><img src="img/Rijksmuseum.jpg" class='image' alt=""></a>
 
-                        </div>
-                        <div class="art-content">
-                            <div class="info-wrapper">
-                                <div class="art-author">
-                                    <h3>Johny</h3>
-                                </div>
-                                <div class="art-date">1999</div>
-                            </div>
-                            <div class="desc-wrapper">
-                                <div class="art-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur ut facere, aspernatur reprehenderit quam consequatur alias debitis! Accusamus ipsam facere beatae id eius veritatis, possimus officia adipisci optio porro nisi eos, quod natus quos et consectetur itaque quasi rem odio consequuntur architecto commodi! Incidunt exercitationem id asperiores excepturi, necessitatibus omnis, odio nisi adipisci rem quia soluta? Eaque adipisci numquam cupiditate dolorum corporis et labore, velit nostrum excepturi error! Quaerat odit similique nisi mollitia cumque doloremque dolorum exercitationem nostrum, sequi debitis eaque officia ullam porro aut ab, excepturi voluptatum sapiente laboriosam perferendis inventore molestiae itaque quasi. Saepe quae consequuntur tenetur eligendi assumenda eaque pariatur culpa non vero voluptate soluta, ipsa officiis ratione similique nesciunt velit atque temporibus? Quo nostrum inventore accusamus exercitationem at a velit! Quam qui debitis et! Expedita ea perspiciatis, accusantium reprehenderit omnis velit ut soluta deserunt ex iure eaque asperiores animi praesentium cumque accusamus cupiditate hic nihil sapiente assumenda culpa! Rem, soluta. Nostrum quidem soluta, corrupti itaque nesciunt sit porro, voluptatem inventore architecto dolorum mollitia repellendus dignissimos perferendis, officia nulla! Ipsum perspiciatis sed reiciendis nihil fuga laboriosam veritatis. Obcaecati provident architecto quod neque. Sunt veniam aut harum, laboriosam eveniet, quo corrupti, numquam ad voluptatum vero cupiditate fuga dolores?
-                                </div>
-                                <button onclick ="readMore(this)" class="read-more btn">Czytaj więcej</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end item -->
                 </div>
 
                 <!-- <div class="img-modal">
@@ -72,17 +50,27 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div> -->
-
+                </div> -->
             </div>
+
         </div>
-    
+    </div>
+    </div>
+
+    <div class="pages"></div>
+
+   
+
+    <footer>
+        <p class="footer-text">Zadanie rekrutacyjne dla br<span>it</span>enet &copy Radek Dumin</p>
+    </footer>
 
 
-        <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
-        <script src="js/lightbox-plus-jquery.js"></script>
-        <script src="js/app.js"></script>
+    <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+
+    <script src="js/lightbox-plus-jquery.js"></script>
+
+    <script src="js/app.js"></script>
 </body>
 
 </html>
